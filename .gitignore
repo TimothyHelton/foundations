@@ -48,7 +48,7 @@ Thumbs.db
 foundations/.idea/*
 
 # pytest files #
-.cache/*
+foundations/tests/.cache
 foundations/tests/.coverage
 
 # Sphinx files #
