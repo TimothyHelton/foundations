@@ -59,7 +59,6 @@ class Sorting:
             if min_loc is idx:
                 continue
             else:
-                # self.items.insert(idx, self.items.pop(min_loc))
                 old_value = self.items[idx]
                 self.items[idx] = self.items[min_loc]
                 self.items[min_loc] = old_value
