@@ -12,7 +12,7 @@ import random
 from strumenti import system
 
 
-logger = system.logger_setup(name=__name__, master_level=logging.WARNING)
+logger = system.logger_setup(name=__name__, master_level=logging.INFO)
 
 
 class Sorting:
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     sort.selection_sort()
 
     from timeit import timeit
-    iterations = int(10e3)
+    iterations = int(10e1)
     times = {x: timeit('calc = Sorting(items={}); calc.{}()'.format(test_items,
                                                                     x),
                        'from __main__ import Sorting', number=iterations)

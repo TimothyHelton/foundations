@@ -14,6 +14,7 @@ dist/*
 workspace.xml
 
 # Logs and databases #
+examples/.ipynb_checkpoints/*
 *.log
 *.sql
 *.sqlite
