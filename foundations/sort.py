@@ -40,6 +40,12 @@ class Sorting:
     def __repr__(self):
         return 'Sorting(items={})'.format(self.items)
 
+    def bubble_sort(self):
+        pass
+
+    def merge_sort(self):
+        pass
+
     def selection_sort(self):
         """Sorts items into ascending order using the selection sort algorithm.
 
