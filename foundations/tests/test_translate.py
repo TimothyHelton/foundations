@@ -24,6 +24,7 @@ trans_pig_latin = {'leading_consonant': ('pig', 'igpay'),
                    'leading_vowel': ('omelet', 'omeletway'),
                    'multi-word': ('happy eat', 'appyhay eatway'),
                    'capital': ('Duck Are', 'Uckday Areway'),
+                   'punctuation': ('happy. eat!', 'appyhay. eatway!'),
                    }
 
 
