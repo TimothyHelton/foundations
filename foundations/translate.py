@@ -7,6 +7,7 @@
 """
 
 import string
+from typing import Tuple
 
 
 class PigLatin:
@@ -22,7 +23,7 @@ class PigLatin:
         - **pig_latin**: *str* phrase translated into Pig Latin
     """
 
-    def __init__(self, phrase):
+    def __init__(self, phrase: str):
         self.vowels = ['a', 'e', 'i', 'o', 'u']
         self.consonants = [x for x in string.ascii_lowercase
                            if x not in self.vowels]
@@ -31,17 +32,31 @@ class PigLatin:
         self._pig_latin = None
 
     @property
-    def pig_latin(self):
+    def pig_latin(self) -> str:
         self.translate()
         return ' '.join(self._pig_latin)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "PigLatin(phrase='{}')".format(self.original_phrase)
 
     def translate(self):
         """Translate phrase into pig latin."""
 
-        def trans_consonant(wrd, capitalize):
+        def punctuation(wrd: str) -> Tuple[str, str]:
+            """Check if word ends with a punctuation mark.
+
+            :param str wrd: word to be checked
+            :returns: word with ending punctuation mark removed and boolean \
+                argument to state if a punctuation mark was present
+            :rtype: tuple(str, str)
+            """
+            mark = None
+            if wrd[-1] in string.punctuation:
+                mark = wrd[-1]
+                wrd = wrd[:-1]
+            return wrd, mark
+
+        def trans_consonant(wrd: str, capitalize: bool) -> str:
             """Translate word that begins with a consonant.
 
             :param str wrd: word to be translated
@@ -53,14 +68,17 @@ class PigLatin:
             for (idx, letter) in enumerate(wrd):
                 if letter in self.vowels:
                     break
+            wrd, mark = punctuation(wrd)
             leading_consts = wrd[:idx]
             new_beginning = wrd[idx:]
             trans = '{}{}ay'.format(new_beginning, leading_consts)
+            if mark:
+                trans += mark
             if capitalize:
                 return trans.capitalize()
             return trans
 
-        def trans_vowel(wrd, capitalize):
+        def trans_vowel(wrd: str, capitalize: bool) -> str:
             """Translate word that begins with a vowel.
 
             :param str wrd: word to be translated
@@ -68,7 +86,10 @@ class PigLatin:
             :returns: word beginning with vowel translated into pig latin
             :rtype: str
             """
+            wrd, mark = punctuation(wrd)
             trans = '{}way'.format(wrd)
+            if mark:
+                trans += mark
             if capitalize:
                 return trans.capitalize()
             return trans
