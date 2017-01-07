@@ -25,3 +25,10 @@ sort
     :show-inheritance:
     :synopsis: Sorting Algoritm Module
 
+translate
+---------
+.. automodule:: translate
+    :members:
+    :show-inheritance:
+    :synopsis: Module to translate English phrases into other languages
+
