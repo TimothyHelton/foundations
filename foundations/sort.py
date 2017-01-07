@@ -44,7 +44,31 @@ class Sorting:
         pass
 
     def merge_sort(self):
-        pass
+        """Sorts items into ascending order using the merge sort algorithm."""
+        def split_list(base_list):
+            """Split original list into two lists."""
+            if len(base_list) < 2:
+                return base_list
+
+            middle = len(base_list) // 2
+            front = split_list(base_list[:middle])
+            back = split_list(base_list[middle:])
+
+            return sort_list(front, back)
+
+        def sort_list(first, last):
+            if not first:
+                return last
+            if not last:
+                return first
+
+            if first[0] < last[0]:
+                return [first[0]] + sort_list(first[1:], last)
+            return [last[0]] + sort_list(first, last[1:])
+
+        logger.debug('execute: merge_sort')
+        self.items = split_list(self.items)
+        logger.debug(self.items)
 
     def selection_sort(self):
         """Sorts items into ascending order using the selection sort algorithm.
@@ -72,14 +96,17 @@ class Sorting:
 
 
 if __name__ == '__main__':
-    solution_methods = ('selection_sort',
+    solution_methods = ('merge_sort',
+                        'selection_sort',
                         )
-    test_items = random.sample(range(100), 100)
+
+    test_items = random.sample(range(1000), 100)
     # test_items = [4, 3, 2, 1]
     # test_items = [4, 3, 3, 2]
 
-    sort = Sorting(items=test_items)
-    sort.selection_sort()
+    # sort = Sorting(items=test_items)
+    # sort.selection_sort()
+    # sort.merge_sort()
 
     from timeit import timeit
     iterations = int(10e1)
