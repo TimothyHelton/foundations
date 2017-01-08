@@ -109,3 +109,40 @@ class PigLatin:
             elif lower_first in self.vowels:
                 self._pig_latin.append((trans_vowel(wrd=lower_word,
                                                     capitalize=cap)))
+
+
+class ReversePolish:
+    """Calculate mathematical expressions using Reverse Polish Notation.
+
+    :param str expression: mathematical expression to evaluate
+
+    .. note:: The expression must have entries separated by spaces. Example:
+
+        1 2 +
+
+    :Attributes:
+
+        - **expression**: *str* mathematical expression to evaluate
+        - **operators**: *list* mathematical operators
+        - **stack**: *list* stack to be evaluated
+    """
+    def __init__(self, expression: str):
+        self.expression = expression
+        self.operators = ('+', '-', '*', '/', '**')
+        self.stack = []
+
+    def __repr__(self):
+        return "ReversePolish(expression='{}'".format(self.expression)
+
+    def evaluate(self):
+        """Evaluate the mathematical expression."""
+        commands = self.expression.split()
+        for cmd in commands:
+            if cmd not in self.operators:
+                self.stack.append(cmd)
+            else:
+                result = eval('{} {} {}'.format(self.stack.pop(-2),
+                                                cmd,
+                                                self.stack.pop(-1)))
+                self.stack.append(result)
+        return result
