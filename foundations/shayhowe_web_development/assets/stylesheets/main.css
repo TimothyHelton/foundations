@@ -388,3 +388,21 @@ Speakers
     margin: -66px 0 22px 0;
     vertical-align: top;
 }
+
+/*
+=========================
+Venue
+=========================
+*/
+
+.venue-hotel {
+    margin-bottom: 22px;
+}
+
+.venue-theatre {
+    margin-bottom: 66px;
+}
+
+.venue-map {
+    height: 264px;
+}
